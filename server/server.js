@@ -1,19 +1,20 @@
 const express = require("express");
-const app = express();
 const bodyParser = require("body-parser");
+
+const app = express();
 const port = process.env.PORT || 5000;
 const moviesRouter = require("./routes/movies.router");
-const genresRouter = require("./routes/genres.router");
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for angular requests
-app.use(express.static("build"));
+app.use(express.static("build")); //serving up static files
+app.use(bodyParser.urlencoded({ extended: true })); //tuck sent data onto req.body
 
 /** ---------- ROUTES ---------- **/
 app.use("/movies", moviesRouter);
-app.use("/genres", genresRouter);
+app.use("/", moviesRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
-  console.log("Listening on port: ", port);
+  console.log("Server is running on port: ", port);
 });
