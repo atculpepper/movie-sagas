@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../modules/pool");
 
+// ------MOVIES ROUTES ----------//
+
 // GET route to get all the movies from the database
 router.get("/", (req, res) => {
   const queryText = `SELECT * FROM "movies" ORDER BY title ASC;`;
@@ -21,11 +23,38 @@ router.get("/", (req, res) => {
     });
 });
 
+// route for updating movie data
+router.put("/edit/:id", (req, res) => {
+  const itemId = req.params.id;
+
+  const newMovieData = req.body;
+  const queryText = `UPDATE "movies"
+      SET "title"=$1, "poster"=$2, "description"=$3, 
+      WHERE "id" = $4;`;
+
+  pool
+    .query(queryText, [
+      newMovieData.title,
+      newMovieData.poster,
+      newMovieData.description,
+      itemId,
+    ])
+    .then((responseDB) => {
+      res.sendStatus(200);
+      console.log("changed something in the database", responseDB);
+    })
+    .catch((err) => {
+      console.log("Error updating movie:", err);
+      res.sendStatus(500);
+    });
+});
+
+//not sure if I will need this -- it is to get details with id as param
 router.get("/details/:id", (req, res) => {
-  const queryText = `SELECT * from "genres"
-  JOIN "movies_genres" ON "movies_genres".genres_id = "genres".id
-  JOIN "movies" ON "movies_genres".movies_id = "movies".id
-  WHERE "movies".id = 1;`;
+  const queryText = `SELECT "movies".id, "movies".title, "movies".description, "movies".poster, 
+  array_agg(genres.name) as agg_genres_as_objects from movies JOIN 
+  movies_genres on movies.id = movies_genres.movies_id JOIN genres on genres.id = movies_genres.genres_id 
+  GROUP BY movies.id ORDER BY movies.id ASC;`;
   pool
     .query(queryText, [req.params.id])
 
@@ -68,28 +97,17 @@ router.post("/movies", (req, res) => {
     });
 });
 
-// route for updating movie data
-router.put("/details/:id", (req, res) => {
-  const itemId = req.params.id;
-
-  const newMovieData = req.body;
-  const queryText = `UPDATE "movies"
-      SET "title"=$1, "poster"=$2, "description"=$3, 
-      WHERE "id" = $4;`;
+//______GENRES ROUTES___________//
+//genres GET route
+router.get("/", (req, res) => {
+  const queryText = `SELECT * FROM "genres" ORDER BY "id" ASC;`;
 
   pool
-    .query(queryText, [
-      newMovieData.title,
-      newMovieData.poster,
-      newMovieData.description,
-      itemId,
-    ])
-    .then((responseDB) => {
-      res.sendStatus(200);
-      console.log("changed something in the database", responseDB);
+    .query(queryText)
+    .then((response) => {
+      res.send(response.rows);
     })
     .catch((err) => {
-      console.log("Error updating movie:", err);
       res.sendStatus(500);
     });
 });

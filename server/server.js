@@ -14,7 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true })); //tuck sent data onto req.bo
 app.use("/movies", moviesRouter);
 app.use("/", moviesRouter);
 app.use("/details/:id", moviesRouter);
-app.use("/details/", moviesRouter);
+app.use("/edit/:id", moviesRouter);
+app.use("/details", moviesRouter);
+app.use("/edit", moviesRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
