@@ -49,47 +49,23 @@ router.put("/edit/:id", (req, res) => {
     });
 });
 
-//not sure if I will need this -- it is to get details with id as param
+//not sure if I will need this -- it is to get details that INCLUDE genres with id as param
 router.get("/details/:id", (req, res) => {
+  const detailsToGet = req.params.id;
   const queryText = `SELECT "movies".id, "movies".title, "movies".description, "movies".poster, 
-  array_agg(genres.name) as agg_genres_as_objects from movies JOIN 
-  movies_genres on movies.id = movies_genres.movies_id JOIN genres on genres.id = movies_genres.genres_id 
-  GROUP BY movies.id ORDER BY movies.id ASC;`;
+  array_agg("genres".name) as agg_genres_as_objects 
+  FROM "movies" JOIN "movies_genres" on "movies".id = "movies_genres".movies_id 
+  JOIN "genres" on "genres".id = "movies_genres".genres_id 
+  WHERE "movies".id = $1 GROUP BY "movies".id;`;
   pool
-    .query(queryText, [req.params.id])
+    .query(queryText, [detailsToGet])
 
     // .then(res => res.text())
     // .then(text =>console.log(text));
     .then((responseDB) => {
       const dbRows = responseDB.rows;
-      console.table(dbRows);
+      console.table(`${detailsToGet}`, dbRows);
       res.send(dbRows);
-    })
-    .catch((error) => {
-      console.log(`Error making database query ${queryText1}`, error);
-      res.sendStatus(500);
-    });
-});
-
-// Setup a POST route to add a new movie to the database
-router.post("/movies", (req, res) => {
-  const newMovie = req.body;
-  const queryText = `INSERT INTO movies (title, poster, description) VALUES 
-  ($1, $2, $3)`;
-  // Let sql sanitize your inputs (NO Bobby Drop Tables here!)
-  // the $1, $2, etc get substituted with the values from the array below
-
-  //newMovie expected data structure:
-  //   {
-  //     title: '',
-  //     poster: '',
-  //     description: ''
-  //   }
-  pool
-    .query(queryText, [newMovie.title, newMovie.poster, newMovie.description])
-    .then((responseDB) => {
-      console.log(`Added movie to the database`, responseDB);
-      res.sendStatus(201);
     })
     .catch((error) => {
       console.log(`Error making database query ${queryText}`, error);
@@ -108,6 +84,30 @@ router.get("/", (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
+      res.sendStatus(500);
+    });
+});
+
+//a details route that does not require ID params to return movies data AND genres data?
+router.get("/details", (req, res) => {
+  const detailsToGet = req.params.id;
+  const queryText = `SELECT "movies".id, "movies".title, "movies".description, "movies".poster, 
+  array_agg("genres".name) as agg_genres_as_objects 
+  FROM "movies" JOIN "movies_genres" on "movies".id = "movies_genres".movies_id 
+  JOIN "genres" on "genres".id = "movies_genres".genres_id 
+  GROUP BY "movies".id ORDER BY "movies".id ASC`;
+  pool
+    .query(queryText, [detailsToGet])
+
+    // .then(res => res.text())
+    // .then(text =>console.log(text));
+    .then((responseDB) => {
+      const dbRows = responseDB.rows;
+      console.table(`${detailsToGet}`, dbRows);
+      res.send(dbRows);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${queryText}`, error);
       res.sendStatus(500);
     });
 });
