@@ -74,7 +74,7 @@ router.put("/details/:id", (req, res) => {
 
   const newMovieData = req.body;
   const queryText = `UPDATE "movies"
-      SET "title"=$1, "poster"=$2, "description"=$3
+      SET "title"=$1, "poster"=$2, "description"=$3, 
       WHERE "id" = $4;`;
 
   pool

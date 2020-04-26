@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
+import MoviesList from "../MoviesList/MoviesList";
 
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
       <div className="App">
-        <p>Hello! I am empty</p>
+        <p>Hello! I am a list?</p>
+        <MoviesList />
       </div>
     );
   }
