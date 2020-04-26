@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./MoviesItem.css";
+import Grid from "@material-ui/core/Grid";
 
 class MoviesItem extends Component {
   detailsItem = () => {
@@ -11,13 +13,26 @@ class MoviesItem extends Component {
 
   render() {
     return (
-      <li>
-        {this.props.moviesItem.name}
-        {this.props.moviesItem.title}
-        {this.props.moviesItem.description}
-        {this.props.moviesItem.poster}
-        <button onClick={this.detailsItem}>Details</button>
-      </li>
+      <div>
+        <Grid
+          container
+          direction="row"
+          justify="space-evenly"
+          alignItems="center"
+        >
+          <h2>{this.props.moviesItem.title}</h2>
+
+          <img
+            margin="auto"
+            display="block"
+            maxWidth="100%"
+            maxHeight="100%"
+            src={this.props.moviesItem.poster}
+          />
+
+          <p>{this.props.moviesItem.description}</p>
+        </Grid>
+      </div>
     );
   }
 }
