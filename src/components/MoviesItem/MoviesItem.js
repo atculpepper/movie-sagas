@@ -7,13 +7,20 @@ class MoviesItem extends Component {
   detailsItem = () => {
     this.props.dispatch({
       type: "GET_DETAILS",
-      payload: `/movies/${this.props.moviesItem.id}`,
+      payload: this.props.moviesItem,
     });
+    //include a second dispatch here
+    this.props.dispatch({
+      type: "GET_MOVIES",
+      payload: this.props.movieItem,
+    });
+
+    this.props.history.push("/details");
   };
 
   render() {
     return (
-      <div>
+      <div onClick={this.detailsItem}>
         <Grid
           container
           direction="row"

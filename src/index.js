@@ -23,10 +23,22 @@ function* fetchMovies(action) {
     console.warn("error with GET:", err);
   }
 }
+//get details (including genres) from server and store to genres reducer
+//this will rely on a server side many to many table query
+function* fetchDetails(action) {
+  try {
+    const response = yield axios.get("/details/:id");
+
+    yield put({ type: "SET_DETAILS", payload: response.data });
+  } catch (err) {
+    console.warn("error with GET:", err);
+  }
+}
 
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery("GET_MOVIES", fetchMovies);
+  yield takeEvery("GET_DETAILS", fetchDetails);
 }
 
 // Create sagaMiddleware
@@ -45,7 +57,7 @@ const movies = (state = [], action) => {
 // Used to store the movie genres
 const genres = (state = [], action) => {
   switch (action.type) {
-    case "SET_GENRES":
+    case "SET_DETAILS":
       return action.payload;
     default:
       return state;

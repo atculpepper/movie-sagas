@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require("../modules/pool");
 
 // GET route to get all the movies from the database
-router.get("/movies", (req, res) => {
+router.get("/", (req, res) => {
   const queryText = `SELECT * FROM "movies" ORDER BY title ASC;`;
   pool
     .query(queryText)
@@ -22,10 +22,10 @@ router.get("/movies", (req, res) => {
 });
 
 router.get("/details/:id", (req, res) => {
-  const queryText = `SELECT "movies".title, "movies".description, "genres".name
-  FROM "movies" JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id 
-          JOIN "genres" ON "movies_genres".genres_id = "genres".id 
-          WHERE "movies".id = $1;`;
+  const queryText = `SELECT * from "genres"
+  JOIN "movies_genres" ON "movies_genres".genres_id = "genres".id
+  JOIN "movies" ON "movies_genres".movies_id = "movies".id
+  WHERE "movies".id = 1;`;
   pool
     .query(queryText, [req.params.id])
 
@@ -37,7 +37,7 @@ router.get("/details/:id", (req, res) => {
       res.send(dbRows);
     })
     .catch((error) => {
-      console.log(`Error making database query ${queryText}`, error);
+      console.log(`Error making database query ${queryText1}`, error);
       res.sendStatus(500);
     });
 });
