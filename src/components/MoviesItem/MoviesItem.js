@@ -20,17 +20,21 @@ class MoviesItem extends Component {
           justify="space-evenly"
           alignItems="center"
         >
-          <h2>{this.props.moviesItem.title}</h2>
-
-          <img
-            margin="auto"
-            display="block"
-            maxWidth="100%"
-            maxHeight="100%"
-            src={this.props.moviesItem.poster}
-          />
-
-          <p>{this.props.moviesItem.description}</p>
+          <Grid item>
+            <h2>{this.props.moviesItem.title}</h2>
+          </Grid>
+          <Grid item>
+            <img
+              margin="auto"
+              display="block"
+              maxWidth="100%"
+              maxHeight="100%"
+              src={this.props.moviesItem.poster}
+            />
+          </Grid>
+          <Grid item>
+            <p>{this.props.moviesItem.description}</p>
+          </Grid>
         </Grid>
       </div>
     );
