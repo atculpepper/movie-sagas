@@ -13,6 +13,9 @@ class MoviesItem extends Component {
     return (
       <li>
         {this.props.moviesItem.name}
+        {this.props.moviesItem.title}
+        {this.props.moviesItem.description}
+        {this.props.moviesItem.poster}
         <button onClick={this.detailsItem}>Details</button>
       </li>
     );
