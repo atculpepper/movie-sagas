@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Connect } from "react-redux";
+import { connect } from "react-redux";
 
 class MoviesDetails extends Component {
   clickList = () => {
