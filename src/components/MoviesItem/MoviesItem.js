@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import "./MoviesItem.css";
 import Grid from "@material-ui/core/Grid";
 
@@ -12,10 +13,10 @@ class MoviesItem extends Component {
     //include a second dispatch here
     this.props.dispatch({
       type: "GET_MOVIES",
-      payload: this.props.movieItem,
+      payload: this.props.moviesItem,
     });
 
-    this.props.history.push("/details");
+    this.props.history.push("/details/:id");
   };
 
   render() {
@@ -48,4 +49,4 @@ class MoviesItem extends Component {
   }
 }
 
-export default connect()(MoviesItem);
+export default withRouter(connect()(MoviesItem));

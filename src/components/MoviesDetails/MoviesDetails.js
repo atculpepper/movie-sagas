@@ -6,7 +6,7 @@ class MoviesDetails extends Component {
     this.props.dispatch({
       type: "GET_MOVIES",
     });
-    this.props.history.push("/movies");
+    // this.props.history.push("/movies");
   };
 
   clickEdit = () => {
