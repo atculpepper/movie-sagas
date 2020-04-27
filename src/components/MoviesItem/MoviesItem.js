@@ -16,7 +16,7 @@ class MoviesItem extends Component {
       payload: this.props.moviesItem,
     });
 
-    this.props.history.push(`/details/${this.props.moviesItem.id}`); //using back ticks so that I can refer to item.id
+    this.props.history.push(`/details/${event.target.dataset.id}`); //using back ticks so that I can refer to item.id
   };
 
   render() {

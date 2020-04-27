@@ -14,8 +14,8 @@ class MoviesDetails extends Component {
   };
 
   render() {
-    const moviesItemDetails = this.props.reduxState.movies;
-
+    const moviesItemDetails = this.props.reduxState.genres;
+    //I want to include genre information here, but I will need to join the genres that were returned in an array within an array
     return (
       <div>
         <h2>{moviesItemDetails.title}</h2>
