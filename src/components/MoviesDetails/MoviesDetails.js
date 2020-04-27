@@ -10,7 +10,7 @@ class MoviesDetails extends Component {
   };
 
   clickEdit = () => {
-    this.props.history.push("/edit");
+    this.props.history.push("/edit/:id");
   };
 
   render() {

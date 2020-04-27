@@ -8,7 +8,7 @@ class MoviesItem extends Component {
     console.log(this.props.moviesItem.id);
     this.props.dispatch({
       type: "GET_DETAILS",
-      payload: parseInt(this.props.moviesItem.id),
+      payload: this.props.moviesItem.id,
     });
     // include a second dispatch here
     this.props.dispatch({
