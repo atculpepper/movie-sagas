@@ -14,10 +14,10 @@ class App extends Component {
         <div className="App">
           <p>MOVIE SAGAS</p>
 
-          <div ClassName="routes">
-            <Route exact path="/" component={MoviesList} />
-            <Route exact path="/details/:id" component={MoviesDetails} />
-            <Route exact path="/edit/:id" component={MoviesEdit} />
+          <div className="routes">
+            <Route exact path="/" Component={MoviesList} />
+            <Route exact path="/details/:id" Component={MoviesDetails} />
+            <Route exact path="/edit/:id" Component={MoviesEdit} />
           </div>
         </div>
       </Router>
