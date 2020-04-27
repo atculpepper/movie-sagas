@@ -27,7 +27,7 @@ function* fetchMovies(action) {
 //this will rely on a server side many to many table query
 function* fetchDetails(action) {
   try {
-    const response = yield axios.get("/details/:id");
+    const response = yield axios.get(`/details/${id}`);
 
     yield put({ type: "SET_DETAILS", payload: response.data });
   } catch (err) {

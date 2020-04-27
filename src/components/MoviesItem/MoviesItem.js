@@ -4,24 +4,28 @@ import "./MoviesItem.css";
 import Grid from "@material-ui/core/Grid";
 
 class MoviesItem extends Component {
-  clickDetailsItem = (event, id) => {
-    console.log(this.props.moviesItem.id);
-    this.props.dispatch({
-      type: "GET_DETAILS",
-      payload: this.props.moviesItem.id,
-    });
-    // include a second dispatch here
-    this.props.dispatch({
-      type: "GET_MOVIES",
-      payload: this.props.moviesItem,
-    });
+  clickDetailsItem = (id) => (event) => {
+    //save the value of this.props.moviesItem.id as a constant and then in axios call in generator saga pass the object?
+    // console.log(this.props.moviesItem.id);
+    // // const id = this.props.moviesItem.id;
 
-    this.props.history.push(`/details/${event.target.dataset.id}`); //using back ticks so that I can refer to item.id
+    // this.props.dispatch({
+    //   type: "GET_DETAILS",
+    //   payload: this.props.moviesItem.id,
+    // });
+    // // include a second dispatch here
+    // this.props.dispatch({
+    //   type: "GET_MOVIES",
+    //   payload: this.props.moviesItem,
+    // });
+
+    this.props.history.push(`/details/${id}`); //using back ticks so that I can refer to item.id
   };
 
   render() {
+    const selectedId = this.props.moviesItem.id;
     return (
-      <div onClick={this.clickDetailsItem}>
+      <div onClick={this.clickDetailsItem(selectedId)}>
         <Grid
         // container
         // direction="row"
@@ -36,6 +40,9 @@ class MoviesItem extends Component {
           </Grid>
           <Grid item>
             <p>{this.props.moviesItem.description}</p>
+          </Grid>
+          <Grid item>
+            <p>{this.props.moviesItem.genres.join(",")}</p>
           </Grid>
         </Grid>
       </div>
