@@ -6,18 +6,18 @@ import Grid from "@material-ui/core/Grid";
 class MoviesItem extends Component {
   clickDetailsItem = (id) => (event) => {
     //save the value of this.props.moviesItem.id as a constant and then in axios call in generator saga pass the object?
-    // console.log(this.props.moviesItem.id);
-    // // const id = this.props.moviesItem.id;
+    console.log(this.props.moviesItem.id);
+    // const id = this.props.moviesItem.id;
 
-    // this.props.dispatch({
-    //   type: "GET_DETAILS",
-    //   payload: this.props.moviesItem.id,
-    // });
-    // // include a second dispatch here
-    // this.props.dispatch({
-    //   type: "GET_MOVIES",
-    //   payload: this.props.moviesItem,
-    // });
+    this.props.dispatch({
+      type: "GET_DETAILS",
+      payload: this.props.moviesItem.id,
+    });
+    // include a second dispatch here
+    this.props.dispatch({
+      type: "GET_MOVIES",
+      payload: this.props.moviesItem,
+    });
 
     this.props.history.push(`/details/${id}`); //using back ticks so that I can refer to item.id
   };
