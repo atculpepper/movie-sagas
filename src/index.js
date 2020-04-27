@@ -64,9 +64,10 @@ const genres = (state = [], action) => {
   }
 };
 
+//this reducer receives an object, so it is perfect for getting details that include aggregated genre data
 const movies_genres = (state = {}, action) => {
   switch (action.type) {
-    case "SET_GENRES":
+    case "SET_DETAILS":
       return action.payload;
     default:
       return state;
@@ -78,6 +79,7 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
+
     movies_genres,
   }),
   // Add sagaMiddleware to our store

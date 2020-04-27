@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import "./MoviesItem.css";
 import Grid from "@material-ui/core/Grid";
 
@@ -23,22 +22,16 @@ class MoviesItem extends Component {
     return (
       <div onClick={this.detailsItem}>
         <Grid
-          container
-          direction="row"
-          justify="space-evenly"
-          alignItems="center"
+        // container
+        // direction="row"
+        // justify="space-evenly"
+        // alignItems="center"
         >
           <Grid item>
             <h2>{this.props.moviesItem.title}</h2>
           </Grid>
           <Grid item>
-            <img
-              margin="auto"
-              display="block"
-              maxWidth="100%"
-              maxHeight="100%"
-              src={this.props.moviesItem.poster}
-            />
+            <img src={this.props.moviesItem.poster} />
           </Grid>
           <Grid item>
             <p>{this.props.moviesItem.description}</p>
@@ -49,4 +42,4 @@ class MoviesItem extends Component {
   }
 }
 
-export default withRouter(connect()(MoviesItem));
+export default connect()(MoviesItem);
