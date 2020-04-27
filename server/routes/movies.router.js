@@ -43,7 +43,7 @@ router.get("/", (req, res) => {
 // });
 
 // route for updating movie data
-router.put("/details/:id", (req, res) => {
+router.put("/edit/:id", (req, res) => {
   const itemId = req.params.id;
 
   const newMovieData = req.body;
