@@ -4,23 +4,24 @@ import "./MoviesItem.css";
 import Grid from "@material-ui/core/Grid";
 
 class MoviesItem extends Component {
-  detailsItem = () => {
+  clickDetailsItem = (event, id) => {
+    console.log(this.props.moviesItem.id);
     this.props.dispatch({
       type: "GET_DETAILS",
-      payload: this.props.moviesItem,
+      payload: parseInt(this.props.moviesItem.id),
     });
-    //include a second dispatch here
+    // include a second dispatch here
     this.props.dispatch({
       type: "GET_MOVIES",
       payload: this.props.moviesItem,
     });
 
-    this.props.history.push("/details/:id");
+    this.props.history.push(`/details/${this.props.moviesItem.id}`); //using back ticks so that I can refer to item.id
   };
 
   render() {
     return (
-      <div onClick={this.detailsItem}>
+      <div onClick={this.clickDetailsItem}>
         <Grid
         // container
         // direction="row"

@@ -18,7 +18,7 @@ class App extends Component {
           <div className="routes">
             <Route exact path="/" Component={MoviesList} />
             <Route exact path="/details/:id" Component={MoviesDetails} />
-            {/* <Route exact path="/edit/:id" Component={MoviesEdit} /> */}
+            <Route exact path="/edit/:id" Component={MoviesEdit} />
           </div>
         </Router>
       </div>
