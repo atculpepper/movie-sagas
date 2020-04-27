@@ -41,9 +41,10 @@ class MoviesItem extends Component {
           <Grid item>
             <p>{this.props.moviesItem.description}</p>
           </Grid>
-          <Grid item>
+
+          {/* <Grid item>
             <p>{this.props.moviesItem.genres.join(",")}</p>
-          </Grid>
+          </Grid> */}
         </Grid>
       </div>
     );
