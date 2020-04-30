@@ -52,7 +52,7 @@ router.put("/edit/:id", (req, res) => {
 module.exports = router;
 
 //not sure if I will need this -- it is to get details that INCLUDE genres with id as param
-router.get("/details/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   const detailsToGet = req.params.id;
   const queryText = `SELECT "movies".id, "movies".title, "movies".description, "movies".poster,
   array_agg("genres".name) as agg_genres_as_objects
