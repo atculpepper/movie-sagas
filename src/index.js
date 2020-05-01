@@ -35,7 +35,7 @@ function* fetchDetails(action) {
   }
 }
 
-// Create the rootSaga generator function
+// Create the rootSaga generator function -- register all sagas here
 function* rootSaga() {
   yield takeEvery("GET_MOVIES", fetchMovies);
   yield takeEvery("GET_DETAILS", fetchDetails);
