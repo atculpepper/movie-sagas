@@ -34,8 +34,8 @@ router.put("/edit/:id", (req, res) => {
 
   pool
     .query(queryText, [
+      //how is the title coming to the server:
       newMovieData.title,
-      newMovieData.poster,
       newMovieData.description,
       itemId,
     ])
@@ -70,6 +70,7 @@ router.get("/details/:id", (req, res) => {
 
 router.get("/genres/:id", (req, res) => {
   // get a single movies' data
+  //this command returns multiple rows of movie title when they have multiple genres
   const queryString = `SELECT "movies_genres".movies_id, "movies_genres".genres_id, "movies".title, "genres".name FROM "movies"
     JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id
     JOIN "genres" ON "movies_genres".genres_id = "genres".id
