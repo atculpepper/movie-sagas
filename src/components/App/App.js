@@ -11,10 +11,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <p>MOVIE SAGAS..anything there?</p>
         <Router>
-          <p>MOVIE SAGAS..anything there?</p>
-          <MoviesList />
-
           <div className="routes">
             <Route exact path="/" Component={MoviesList} />
             <Route exact path="/details/:id" Component={MoviesDetails} />
