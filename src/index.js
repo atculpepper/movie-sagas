@@ -6,7 +6,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 // Provider allows us to use redux within our react app
 import { Provider } from "react-redux";
-import { takeEvery, put } from "redux-saga/effects";
+import { takeLatest, put } from "redux-saga/effects";
 import axios from "axios";
 
 import logger from "redux-logger";
@@ -38,8 +38,8 @@ function* fetchDetails(action) {
 // Create the rootSaga generator function -- register all sagas here
 function* rootSaga() {
   //takeLatest?
-  yield takeEvery("GET_MOVIES", fetchMovies);
-  yield takeEvery("GET_DETAILS", fetchDetails);
+  yield takeLatest("GET_MOVIES", fetchMovies);
+  yield takeLatest("GET_DETAILS", fetchDetails);
 }
 
 // Create sagaMiddleware
@@ -66,7 +66,7 @@ const genres = (state = [], action) => {
 };
 
 //this reducer receives an object, so it is perfect for getting details that include aggregated genre data
-const movies_genres = (state = {}, action) => {
+const details = (state = {}, action) => {
   switch (action.type) {
     case "SET_DETAILS":
       return action.payload;
@@ -80,8 +80,7 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
-
-    movies_genres,
+    details,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
