@@ -9,18 +9,35 @@ class MoviesList extends Component {
     this.props.dispatch({ type: "GET_MOVIES" });
   }
 
-  render() {
-    const moviesArray = this.props.reduxState.movies.map(
-      (moviesItem, index) => {
-        return <MoviesItem key={index} moviesItem={moviesItem} />;
-      }
-    );
+  clickMovieDetails = (event, id) => {
+    this.props.history.push(`/details/${id}`);
+  };
 
-    return <div>{moviesArray}</div>;
+  render() {
+    return (
+      <div>
+        <h2>Movie Database</h2>
+        {this.props.store.movies.map((item, index) => (
+          <div
+            key={index}
+            className="movieListItem"
+            onClick={(event) => this.clickMovieDetails(event, item.id)}
+          >
+            <img src={item.poster} alt={item.title} />
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }
 }
 
-const mapReduxStateToProps = (reduxState) => ({
-  reduxState,
-});
-export default connect(mapReduxStateToProps)(MoviesList);
+const mapStoreToProps = (store) => {
+  return {
+    store,
+  };
+};
+export default connect(mapStoreToProps)(MoviesList);
