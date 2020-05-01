@@ -16,7 +16,7 @@ import createSagaMiddleware from "redux-saga";
 //get movies from server and store to movies reducer
 function* fetchMovies(action) {
   try {
-    const response = yield axios.get("/");
+    const response = yield axios.get("/api/movies");
 
     yield put({ type: "SET_MOVIES", payload: response.data });
   } catch (err) {
@@ -27,9 +27,9 @@ function* fetchMovies(action) {
 //this will rely on a server side many to many table query
 function* fetchDetails(action) {
   try {
-    const response = yield axios.get("/details/:id");
-
-    yield put({ type: "SET_DETAILS", payload: response.data });
+    const response = yield axios.get(`/api/movies/details/${movieId}`);
+    //response.data at index 0
+    yield put({ type: "SET_DETAILS", payload: response.data[0] });
   } catch (err) {
     console.warn("error with GET:", err);
   }
@@ -37,6 +37,7 @@ function* fetchDetails(action) {
 
 // Create the rootSaga generator function -- register all sagas here
 function* rootSaga() {
+  //takeLatest?
   yield takeEvery("GET_MOVIES", fetchMovies);
   yield takeEvery("GET_DETAILS", fetchDetails);
 }
