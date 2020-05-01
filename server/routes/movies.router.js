@@ -29,8 +29,8 @@ router.put("/edit/:id", (req, res) => {
 
   const newMovieData = req.body;
   const queryText = `UPDATE "movies"
-      SET "title"=$1, "poster"=$2, "description"=$3 
-      WHERE "id" = $4;`;
+      SET "title"=$1, "description"=$2
+      WHERE "id" = $3;`;
 
   pool
     .query(queryText, [
@@ -51,26 +51,38 @@ router.put("/edit/:id", (req, res) => {
 
 module.exports = router;
 
-//not sure if I will need this -- it is to get details that INCLUDE genres with id as param
-router.get("/:id", (req, res) => {
-  const detailsToGet = req.params.id;
-  const queryText = `SELECT "movies".id, "movies".title, "movies".description, "movies".poster,
-  array_agg("genres".name) as agg_genres_as_objects
-  FROM "movies" JOIN "movies_genres" on "movies".id = "movies_genres".movies_id
-  JOIN "genres" on "genres".id = "movies_genres".genres_id
-  WHERE "movies".id = $1 GROUP BY "movies".id;`;
-  pool
-    .query(queryText, [detailsToGet])
+router.get("/details/:id", (req, res) => {
+  // get a single movies' data
+  const queryString = `SELECT * FROM "movies" WHERE "id" = $1;`;
+  const movieId = req.params.id;
 
-    // .then(res => res.text())
-    // .then(text =>console.log(text));
-    .then((responseDB) => {
-      const dbRows = responseDB.rows;
-      console.table(`${detailsToGet}`, dbRows);
-      res.send(dbRows);
+  pool
+    //what is happening here with [movieId] as a second argument to .query method ?
+    .query(queryString, [movieId])
+    .then((responseDb) => {
+      res.send(responseDb.rows);
     })
-    .catch((error) => {
-      console.log(`Error making database query ${queryText}`, error);
+    .catch((err) => {
+      console.warn(err);
+      res.sendStatus(500);
+    });
+});
+
+router.get("/genres/:id", (req, res) => {
+  // get a single movies' data
+  const queryString = `SELECT "movies_genres".movies_id, "movies_genres".genres_id, "movies".title, "genres".name FROM "movies"
+    JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id
+    JOIN "genres" ON "movies_genres".genres_id = "genres".id
+    WHERE "movies".id = $1;`;
+  const movieId = req.params.id;
+
+  pool
+    .query(queryString, [movieId])
+    .then((responseDb) => {
+      res.send(responseDb.rows);
+    })
+    .catch((err) => {
+      console.warn(err);
       res.sendStatus(500);
     });
 });

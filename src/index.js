@@ -16,7 +16,7 @@ import createSagaMiddleware from "redux-saga";
 //get movies from server and store to movies reducer
 function* fetchMovies(action) {
   try {
-    const response = yield axios.get("/movies");
+    const response = yield axios.get("/");
 
     yield put({ type: "SET_MOVIES", payload: response.data });
   } catch (err) {
@@ -27,7 +27,7 @@ function* fetchMovies(action) {
 //this will rely on a server side many to many table query
 function* fetchDetails(action) {
   try {
-    const response = yield axios.get("/:id");
+    const response = yield axios.get("/details/:id");
 
     yield put({ type: "SET_DETAILS", payload: response.data });
   } catch (err) {
