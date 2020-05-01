@@ -4,51 +4,58 @@ import "./MoviesItem.css";
 import Grid from "@material-ui/core/Grid";
 
 class MoviesItem extends Component {
-  clickDetailsItem = (id) => (event) => {
-    //save the value of this.props.moviesItem.id as a constant and then in axios call in generator saga pass the object?
-    console.log(this.props.moviesItem.id);
-    // const id = this.props.moviesItem.id;
-
+  componentDidMount() {
     this.props.dispatch({
       type: "GET_DETAILS",
-      payload: this.props.moviesItem.id,
+      payload: this.props.match.params.id,
     });
     // include a second dispatch here
     this.props.dispatch({
-      type: "GET_MOVIES",
-      payload: this.props.moviesItem,
+      type: "GET_GENRES",
+      payload: this.props.match.params.id,
     });
+  }
 
-    this.props.history.push(`/details/${id}`); //using back ticks so that I can refer to item.id
+  clickBackToDatabase = (event) => {
+    this.props.history.push("/");
+  };
+
+  clickToEdit = (event) => {
+    this.props.history.push(`/edit/${this.props.match.params.id}`);
   };
 
   render() {
-    const selectedId = this.props.moviesItem.id;
     return (
-      <div onClick={this.clickDetailsItem(selectedId)}>
-        <Grid
-        // container
-        // direction="row"
-        // justify="space-evenly"
-        // alignItems="center"
-        >
+      <div className="alignLeft">
+        <div>
+          <button onClick={this.clickBackToDatabase}>Back To Database</button>
+          <button onClick={this.clickToEdit}>Edit</button>
+        </div>
+        <Grid>
           <Grid item>
-            <h2>{this.props.moviesItem.title}</h2>
+            <h2>Details</h2>
           </Grid>
           <Grid item>
-            <img src={this.props.moviesItem.poster} />
+            <h2>{this.props.store.details.title}</h2>
           </Grid>
           <Grid item>
-            <p>{this.props.moviesItem.description}</p>
+            <img src={this.props.store.details.poster} />
+          </Grid>
+          <Grid item>
+            <p>{this.props.store.details.description}</p>
           </Grid>
 
-          {/* <Grid item>
-            // <p>{this.props.moviesItem.movies_genres.join(",")}</p>
-          </Grid> */}
+          <ul>
+            {this.props.store.genres.map((item, index) => (
+              <li key={index}>{item.name}</li>
+            ))}
+          </ul>
         </Grid>
       </div>
     );
   }
 }
 
-export default connect()(MoviesItem);
+const mapStoreToProps = (store) => ({ store });
+
+export default connect(mapStoreToProps)(MoviesItem);
