@@ -27,6 +27,8 @@ function* fetchMovies(action) {
 //this will rely on a server side many to many table query
 function* fetchDetails(action) {
   try {
+    const movieId = action.payload;
+
     const response = yield axios.get(`/api/movies/details/${movieId}`);
     //response.data at index 0
     yield put({ type: "SET_DETAILS", payload: response.data[0] });
@@ -35,11 +37,25 @@ function* fetchDetails(action) {
   }
 }
 
+function* getGenres(action) {
+  try {
+    const movieId = action.payload;
+    const response = yield axios.get(`api/movies/genres/${movieId}`);
+    yield put({
+      type: "SET_GENRES",
+      payload: response.data,
+    });
+  } catch (err) {
+    console.warn(err);
+  }
+}
+
 // Create the rootSaga generator function -- register all sagas here
 function* rootSaga() {
   //takeLatest?
   yield takeLatest("GET_MOVIES", fetchMovies);
   yield takeLatest("GET_DETAILS", fetchDetails);
+  yield takeLatest("GET_GENRES", getGenres);
 }
 
 // Create sagaMiddleware
