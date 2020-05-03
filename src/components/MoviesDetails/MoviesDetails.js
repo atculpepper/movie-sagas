@@ -20,19 +20,19 @@ class MoviesDetails extends Component {
   };
 
   render() {
-    const moviesItemDetails = this.props.reduxState.genres;
     //I want to include genre information here, but I will need to join the genres that were returned in an array within an array
     return (
       <div>
-        <h2>{moviesItemDetails.title}</h2>
-        <p>{moviesItemDetails.description}</p>
+        <p>poops</p>
+        <h2>{this.props.store.details.title}</h2>
+        <p>{this.props.store.details.description}</p>
       </div>
     );
   }
 }
 
-const mapReduxStateToProps = (reduxState) => ({
-  reduxState,
+const mapStoreToProps = (store) => ({
+  store,
 });
 
-export default connect(mapReduxStateToProps)(MoviesDetails);
+export default connect(mapStoreToProps)(MoviesDetails);
