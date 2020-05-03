@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class MoviesDetails extends Component {
-  clickList = () => {
+  componentDidMount() {
+    // clickList = () => {
     this.props.dispatch({
       type: "GET_MOVIES",
       payload: this.props.match.params.id,
@@ -12,10 +13,10 @@ class MoviesDetails extends Component {
       payload: this.props.match.params.id,
     });
     // this.props.history.push("/movies");
-  };
+  }
 
-  clickEdit = () => {
-    this.props.history.push("/edit/:id");
+  clickEdit = (event) => {
+    this.props.history.push(`/edit/${this.props.match.params.id}`);
   };
 
   render() {

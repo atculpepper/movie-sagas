@@ -12,7 +12,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p>MOVIE SAGAS..anything there?</p>
         <Router>
           <Route exact path="/" component={MoviesList} />
           <Route path="/details/:id" component={MoviesDetails} />
