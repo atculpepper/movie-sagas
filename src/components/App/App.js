@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import { HashRouter as Router, Route } from "react-router-dom";
+
+//page components
 import MoviesList from "../MoviesList/MoviesList";
-import MoviesItem from "../MoviesItem/MoviesItem";
 import MoviesDetails from "../MoviesDetails/MoviesDetails";
 import MoviesEdit from "../MoviesEdit/MoviesEdit";
 
@@ -13,11 +14,9 @@ class App extends Component {
       <div className="App">
         <p>MOVIE SAGAS..anything there?</p>
         <Router>
-          <div className="routes">
-            <Route exact path="/" Component={MoviesList} />
-            <Route exact path="/details/:id" Component={MoviesDetails} />
-            <Route exact path="/edit/:id" Component={MoviesEdit} />
-          </div>
+          <Route exact path="/" component={MoviesList} />
+          <Route path="/details/:id" component={MoviesDetails} />
+          <Route path="/edit/:id" component={MoviesEdit} />
         </Router>
       </div>
     );

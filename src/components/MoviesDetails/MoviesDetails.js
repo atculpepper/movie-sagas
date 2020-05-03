@@ -5,6 +5,11 @@ class MoviesDetails extends Component {
   clickList = () => {
     this.props.dispatch({
       type: "GET_MOVIES",
+      payload: this.props.match.params.id,
+    });
+    this.props.dispatch({
+      type: "GET_GENRES",
+      payload: this.props.match.params.id,
     });
     // this.props.history.push("/movies");
   };

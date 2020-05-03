@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 
 class MoviesList extends Component {
   componentDidMount() {
+    this.props.dispatch({ type: "GET_MOVIES" });
+
     console.log("the component did in fact mount on MoviesList");
     //sends out a call to the rootSaga in index.js, which will redirect the dispatch to a function that will communicate with the server
-    this.props.dispatch({ type: "GET_MOVIES" });
   }
 
   clickMovieDetails = (event, id) => {
