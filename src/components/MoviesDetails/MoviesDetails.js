@@ -9,7 +9,7 @@ class MoviesDetails extends Component {
       payload: this.props.match.params.id,
     });
     this.props.dispatch({
-      type: "GET_GENRES",
+      type: "GET_DETAILS",
       payload: this.props.match.params.id,
     });
     // this.props.history.push("/movies");
