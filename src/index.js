@@ -81,7 +81,7 @@ const genres = (state = [], action) => {
   }
 };
 
-//this reducer receives an object, so it is perfect for getting details that include aggregated genre data
+//this reducer receives an object, so it is good for getting details that include aggregated genre data
 const details = (state = {}, action) => {
   switch (action.type) {
     case "SET_DETAILS":

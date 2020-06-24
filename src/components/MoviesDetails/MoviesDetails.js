@@ -23,9 +23,9 @@ class MoviesDetails extends Component {
     //I want to include genre information here, but I will need to join the genres that were returned in an array within an array
     return (
       <div>
-        <p>poops</p>
-        <h2>{this.props.store.details.title}</h2>
-        <p>{this.props.store.details.description}</p>
+        <p>Details</p>
+        <h2>Title: {this.props.store.details.title}</h2>
+        <p>Description: {this.props.store.details.description}</p>
       </div>
     );
   }

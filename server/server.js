@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 5000;
 const moviesRouter = require("./routes/movies.router");
+const genresRouter = require("./routes/genres.router");
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for angular requests
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true })); //tuck sent data onto req.bo
 /** ---------- ROUTES ---------- **/
 //Register moviesRouter
 app.use("/api/movies", moviesRouter);
+app.use("/api/genres", genresRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
