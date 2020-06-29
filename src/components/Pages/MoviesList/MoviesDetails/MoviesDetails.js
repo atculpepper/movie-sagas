@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Header from "../../../Header/Header.js";
 
 class MoviesDetails extends Component {
   componentDidMount() {
@@ -27,6 +28,7 @@ class MoviesDetails extends Component {
     //I want to include genre information here, but I will need to join the genres that were returned in an array within an array
     return (
       <div className="detailsBody">
+        <Header />
         <div>
           <button className="btn" onClick={this.clickBackToList}>
             Back to List
