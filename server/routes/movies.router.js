@@ -6,13 +6,7 @@ const pool = require("../modules/pool");
 
 router.get("/", (req, res) => {
   // get all movie data
-  // const queryText = `SELECT * FROM "movies" ORDER BY "title" ASC;`;
-  const queryText = `SELECT "movies".id, "movies".title, "movies".poster, "movies".description, array_agg("genres".name) as "genre"
-    FROM "movies"
-    LEFT JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id
-    LEFT JOIN "genres" ON "movies_genres".genres_id = "genres".id
-    GROUP BY "movies".id
-    ORDER BY "title" ASC;`;
+  const queryText = `SELECT * FROM "movies" ORDER BY "title" ASC;`;
 
   pool
     .query(queryText)
