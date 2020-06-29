@@ -15,14 +15,26 @@ class MoviesDetails extends Component {
     // this.props.history.push("/movies");
   }
 
-  clickEdit = (event) => {
+  clickEditMovie = (event) => {
     this.props.history.push(`/edit/${this.props.match.params.id}`);
+  };
+
+  clickBackToList = (event) => {
+    this.props.history.push("/");
   };
 
   render() {
     //I want to include genre information here, but I will need to join the genres that were returned in an array within an array
     return (
-      <div>
+      <div className="detailsBody">
+        <div>
+          <button className="btn" onClick={this.clickBackToList}>
+            Back to List
+          </button>
+          <button className="btn" onClick={this.clickEditMovie}>
+            Edit Movie
+          </button>
+        </div>
         <div>
           <p>Details</p>
           <h3>Title: {this.props.store.details.title}</h3>
