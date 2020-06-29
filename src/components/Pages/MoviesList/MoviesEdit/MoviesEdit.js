@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Header from "../../../Header/Header";
 
 class EditPage extends Component {
   state = {
@@ -55,6 +56,7 @@ class EditPage extends Component {
   render() {
     return (
       <div className="algnLeft">
+        <Header />
         <h2>Edit Title and Description</h2>
         <div>
           <button className="btn" onClick={this.clickCancel}>

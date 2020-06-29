@@ -26,7 +26,9 @@ class Header extends Component {
     return (
       <AppBar>
         <Toolbar>
-          <Typography>Movie Database</Typography>
+          <Typography variant="h4" component="h1">
+            Movie Database
+          </Typography>
         </Toolbar>
       </AppBar>
     );
