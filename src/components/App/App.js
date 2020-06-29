@@ -3,9 +3,9 @@ import "./App.css";
 import { HashRouter as Router, Route } from "react-router-dom";
 
 //page components
-import MoviesList from "../MoviesList/MoviesList";
-import MoviesDetails from "../MoviesDetails/MoviesDetails";
-import MoviesEdit from "../MoviesEdit/MoviesEdit";
+import MoviesList from "../Pages/MoviesList/MoviesList/MoviesList";
+import MoviesDetails from "../Pages/MoviesList/MoviesDetails/MoviesDetails";
+import MoviesEdit from "../Pages/MoviesList/MoviesEdit/MoviesEdit";
 
 class App extends Component {
   // Renders the entire app on the DOM

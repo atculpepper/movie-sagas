@@ -56,9 +56,9 @@ function* getGenres(action) {
 function* putMovieDetails(action) {
   try {
     const movieID = action.payload.id;
-    yield axios.put(`/api/movies/edit/${movieID}`, action.payload);
+    yield axios.put(`/api/movies/eit/${movieID}`, action.payload);
     yield put({
-      type: "GET_MOVIES",
+      type: "GET_MOVIE",
       payload: movieID,
     });
     yield put({
