@@ -62,7 +62,7 @@ function* putMovieDetails(action) {
       payload: movieID,
     });
     yield put({
-      type: "GET_MOVIE_GENRES",
+      type: "GET_GENRES",
       payload: movieID,
     });
   } catch (err) {

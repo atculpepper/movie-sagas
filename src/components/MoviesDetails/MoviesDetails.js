@@ -5,7 +5,7 @@ class MoviesDetails extends Component {
   componentDidMount() {
     // clickList = () => {
     this.props.dispatch({
-      type: "GET_MOVIES",
+      type: "GET_GENRES",
       payload: this.props.match.params.id,
     });
     this.props.dispatch({
