@@ -17,7 +17,7 @@ class MoviesList extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header title="Movie Database" />
         <h2>Movie Database</h2>
         {this.props.store.movies.map((item, index) => (
           <div

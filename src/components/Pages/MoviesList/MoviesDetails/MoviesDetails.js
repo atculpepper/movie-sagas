@@ -28,7 +28,8 @@ class MoviesDetails extends Component {
     //I want to include genre information here, but I will need to join the genres that were returned in an array within an array
     return (
       <div className="detailsBody">
-        <Header />
+        <Header title="Details" />
+
         <div>
           <button className="btn" onClick={this.clickBackToList}>
             Back to List

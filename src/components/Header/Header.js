@@ -27,7 +27,7 @@ class Header extends Component {
       <AppBar>
         <Toolbar>
           <Typography variant="h4" component="h1">
-            Movie Database
+            {this.props.title}
           </Typography>
         </Toolbar>
       </AppBar>
