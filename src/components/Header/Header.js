@@ -24,7 +24,7 @@ const customStyles = (theme) =>
 class Header extends Component {
   render() {
     return (
-      <AppBar>
+      <AppBar style={{ background: "#4a558c" }}>
         <Toolbar>
           <Typography variant="h4" component="h1">
             {this.props.title}
