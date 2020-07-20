@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+//components
 import Header from '../../Header/Header.js';
 
-class MoviesList extends Component {
+//MoviesList component is not yet brought in -- running into an "invalid hook call warning" error when trying to bring it in
+import MoviesList from '../../MoviesList/MoviesList';
+
+class HomePage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'GET_MOVIES' });
 
@@ -32,6 +37,7 @@ class MoviesList extends Component {
             </div>
           </div>
         ))}
+        {/* <MoviesList /> */}
       </div>
     );
   }
@@ -42,4 +48,4 @@ const mapStoreToProps = (store) => {
     store,
   };
 };
-export default connect(mapStoreToProps)(MoviesList);
+export default connect(mapStoreToProps)(HomePage);

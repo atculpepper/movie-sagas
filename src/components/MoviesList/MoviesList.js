@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
+import MoviesListItem from '../MoviesListItem/MoviesListItem';
+
 class MoviesList extends Component {
   //local state for search
   state = {
@@ -38,23 +40,15 @@ class MoviesList extends Component {
     });
 
     return (
-      <div>
-        <Header title='Movie Database' />
-        <h2>Movie Database</h2>
-        {this.props.store.movies.map((item, index) => (
-          <div
-            key={index}
-            className='movieListItem'
-            onClick={(event) => this.clickMovieDetails(event, item.id)}
-          >
-            <img src={item.poster} alt={item.title} />
-            <div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <Container maxWidth={false}>
+        <Grid container spacing={2}>
+          {limitedResults.map((item, index) => (
+            <Grid item xs={12} sm={4} md={3} lg={2}>
+              <MoviesListItem key={index} item={item} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     );
   }
 }
