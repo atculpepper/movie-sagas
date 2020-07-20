@@ -1,16 +1,27 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Header from "../../../Header/Header.js";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Header from '../../../Header/Header.js';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+
+//material ui imports
+import { Button, Container, Grid, Typography, Box } from '@material-ui/core';
+
+const customStyles = (theme) =>
+  createStyles({
+    poster: {
+      width: '100%',
+    },
+  });
 
 class MoviesDetails extends Component {
   componentDidMount() {
     // clickList = () => {
     this.props.dispatch({
-      type: "GET_GENRES",
+      type: 'GET_GENRES',
       payload: this.props.match.params.id,
     });
     this.props.dispatch({
-      type: "GET_DETAILS",
+      type: 'GET_DETAILS',
       payload: this.props.match.params.id,
     });
     // this.props.history.push("/movies");
@@ -21,22 +32,32 @@ class MoviesDetails extends Component {
   };
 
   clickBackToList = (event) => {
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   render() {
+    const { classes } = this.props;
     //I want to include genre information here, but I will need to join the genres that were returned in an array within an array
     return (
-      <div className="detailsBody">
-        <Header title="Details" />
+      <div className='detailsBody'>
+        <Header title='Details' backHandler={this.clickBackToList}>
+          <Button
+            onClick={this.clickEditMovie}
+            variant='outlined'
+            color='inherit'
+            size='large'
+          >
+            Edit Movie
+          </Button>
+        </Header>
 
         <div>
-          <button className="btn" onClick={this.clickBackToList}>
+          {/* <button className='btn' onClick={this.clickBackToList}>
             Back to List
           </button>
-          <button className="btn" onClick={this.clickEditMovie}>
+          <button className='btn' onClick={this.clickEditMovie}>
             Edit Movie
-          </button>
+          </button> */}
         </div>
         <div>
           <p>Details</p>
@@ -57,4 +78,6 @@ const mapStoreToProps = (store) => ({
   store,
 });
 
-export default connect(mapStoreToProps)(MoviesDetails);
+export default withStyles(customStyles)(
+  connect(mapStoreToProps)(MoviesDetails)
+);
