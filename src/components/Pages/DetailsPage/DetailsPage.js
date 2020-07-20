@@ -13,7 +13,7 @@ const customStyles = (theme) =>
     },
   });
 
-class MoviesDetails extends Component {
+class DetailsPage extends Component {
   componentDidMount() {
     // clickList = () => {
     this.props.dispatch({
@@ -78,6 +78,4 @@ const mapStoreToProps = (store) => ({
   store,
 });
 
-export default withStyles(customStyles)(
-  connect(mapStoreToProps)(MoviesDetails)
-);
+export default withStyles(customStyles)(connect(mapStoreToProps)(DetailsPage));
