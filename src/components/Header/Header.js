@@ -37,9 +37,14 @@ class Header extends Component {
     }
     return (
       <div className={classes.root}>
-        <AppBar style={{ background: '#4a558c' }}>
+        <AppBar style={{ background: '#0a0a0a' }}>
           <Toolbar>
-            <Typography variant='h4' component='h1'>
+            <Typography
+              variant='h4'
+              component='h1'
+              className={classes.primaryHeading}
+              color='inherit'
+            >
               {this.props.title}
             </Typography>
           </Toolbar>

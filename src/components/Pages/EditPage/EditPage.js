@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Header from "../../../Header/Header";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Header from '../../Header/Header';
 
 class EditPage extends Component {
   state = {
-    title: "",
-    description: "",
+    title: '',
+    description: '',
   };
 
   componentDidMount() {
     // dispatch to saga to call server API
     this.props.dispatch({
-      type: "GET_MOVIE",
+      type: 'GET_MOVIE',
       payload: this.props.match.params.id,
     });
     this.props.dispatch({
-      type: "GET_GENRES",
+      type: 'GET_GENRES',
       payload: this.props.match.params.id,
     });
   }
@@ -37,16 +37,16 @@ class EditPage extends Component {
       id: this.props.match.params.id,
     };
 
-    if (newDetails.title == null || newDetails.title === "") {
+    if (newDetails.title == null || newDetails.title === '') {
       newDetails.title = this.props.store.details.title;
     }
 
-    if (newDetails.description == null || newDetails.description === "") {
+    if (newDetails.description == null || newDetails.description === '') {
       newDetails.description = this.props.store.details.description;
     }
 
     this.props.dispatch({
-      type: "PUT_MOVIE",
+      type: 'PUT_MOVIE',
       payload: newDetails,
     });
     // navigate to the details page
@@ -55,14 +55,14 @@ class EditPage extends Component {
 
   render() {
     return (
-      <div className="algnLeft">
+      <div className='algnLeft'>
         <Header />
         <h2>Edit Title and Description</h2>
         <div>
-          <button className="btn" onClick={this.clickCancel}>
+          <button className='btn' onClick={this.clickCancel}>
             Cancel
           </button>
-          <button className="btn" onClick={this.clickSaveMovieDetails}>
+          <button className='btn' onClick={this.clickSaveMovieDetails}>
             Save
           </button>
         </div>
@@ -70,17 +70,17 @@ class EditPage extends Component {
         <div>
           <div>
             <input
-              className="textField"
-              type="text"
-              placeholder="New Title"
-              onChange={this.changeMovieDetails("title")}
+              className='textField'
+              type='text'
+              placeholder='New Title'
+              onChange={this.changeMovieDetails('title')}
             />
           </div>
           <div>
             <textarea
-              className="textField"
-              placeholder="New Description"
-              onChange={this.changeMovieDetails("description")}
+              className='textField'
+              placeholder='New Description'
+              onChange={this.changeMovieDetails('description')}
             ></textarea>
           </div>
         </div>

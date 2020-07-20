@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Header from "../../../Header/Header.js";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Header from '../../components/Header/Header.js';
 
 class MoviesList extends Component {
   componentDidMount() {
-    this.props.dispatch({ type: "GET_MOVIES" });
+    this.props.dispatch({ type: 'GET_MOVIES' });
 
-    console.log("the component did in fact mount on MoviesList");
+    console.log('the component did in fact mount on MoviesList');
     //sends out a call to the rootSaga in index.js, which will redirect the dispatch to a function that will communicate with the server
   }
 
@@ -17,12 +17,12 @@ class MoviesList extends Component {
   render() {
     return (
       <div>
-        <Header title="Movie Database" />
+        <Header title='Movie Database' />
         <h2>Movie Database</h2>
         {this.props.store.movies.map((item, index) => (
           <div
             key={index}
-            className="movieListItem"
+            className='movieListItem'
             onClick={(event) => this.clickMovieDetails(event, item.id)}
           >
             <img src={item.poster} alt={item.title} />

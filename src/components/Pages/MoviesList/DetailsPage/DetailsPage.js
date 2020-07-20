@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../../Header/Header.js';
+import Header from '../../components/Header/Header.js';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 
 //material ui imports
