@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+//material ui components
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 class MoviesList extends Component {
   //local state for search
@@ -59,4 +64,4 @@ const mapStoreToProps = (store) => {
     store,
   };
 };
-export default connect(mapStoreToProps)(MoviesList);
+export default withRouter(connect(mapStoreToProps)(MoviesList));
