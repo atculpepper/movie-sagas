@@ -29,37 +29,6 @@ function* fetchDetails(action) {
   }
 }
 
-function* getGenres(action) {
-  try {
-    const movieId = action.payload;
-    const response = yield axios.get('api/genres');
-    yield put({
-      type: 'SET_GENRES',
-      payload: response.data,
-    });
-  } catch (err) {
-    console.warn(err);
-  }
-}
-
-//function to edit movie details
-function* putMovieDetails(action) {
-  try {
-    const movieID = action.payload.id;
-    yield axios.put(`/api/movies/eit/${movieID}`, action.payload);
-    yield put({
-      type: 'GET_MOVIE',
-      payload: movieID,
-    });
-    yield put({
-      type: 'GET_GENRES',
-      payload: movieID,
-    });
-  } catch (err) {
-    console.warn(err);
-  }
-}
-
 // Create the rootSaga generator function -- register all sagas here
 function* rootSaga() {
   //takeLatest?
