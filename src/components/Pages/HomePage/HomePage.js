@@ -9,6 +9,7 @@ import MoviesList from '../../MoviesList/MoviesList';
 
 class HomePage extends Component {
   componentDidMount() {
+    //loads information coming in from server
     this.props.dispatch({ type: 'GET_MOVIES' });
 
     console.log('the component did in fact mount on MoviesList');
