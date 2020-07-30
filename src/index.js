@@ -13,18 +13,8 @@ import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 
-//SAGAS FOR API CALLS
+//SAGAS FOR API CALLS moved to their own folder
 
-//get movies from server and store to movies reducer
-function* fetchMovies(action) {
-  try {
-    const response = yield axios.get('/api/movies');
-
-    yield put({ type: 'SET_MOVIES', payload: response.data });
-  } catch (err) {
-    console.warn('error with GET:', err);
-  }
-}
 //get details (including genres) from server and store to genres reducer
 //this will rely on a server side many to many table query
 function* fetchDetails(action) {
@@ -83,26 +73,6 @@ function* rootSaga() {
 const sagaMiddleware = createSagaMiddleware();
 
 //REDUCERS abstracted to their own folder under redux
-
-// Used to store the movie genres
-const genres = (state = [], action) => {
-  switch (action.type) {
-    case 'SET_GENRES':
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-//this reducer receives an object, so it is good for getting details that include aggregated genre data
-const details = (state = {}, action) => {
-  switch (action.type) {
-    case 'SET_DETAILS':
-      return action.payload;
-    default:
-      return state;
-  }
-};
 
 // Create one store that all components can use
 const storeInstance = createStore(
