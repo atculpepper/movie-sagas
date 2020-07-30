@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { put } from 'redux-saga/effects';
+
 //get movies from server and store to movies reducer
 function* fetchMovies(action) {
   try {
@@ -8,3 +11,5 @@ function* fetchMovies(action) {
     console.warn('error with GET:', err);
   }
 }
+
+export default fetchMovies;

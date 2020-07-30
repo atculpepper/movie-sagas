@@ -13,30 +13,8 @@ import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 
-//SAGAS FOR API CALLS moved to their own folder
-
-//get details (including genres) from server and store to genres reducer
-//this will rely on a server side many to many table query
-function* fetchDetails(action) {
-  try {
-    const movieId = action.payload;
-
-    const response = yield axios.get(`/api/movies/details/${movieId}`);
-    //response.data at index 0
-    yield put({ type: 'SET_DETAILS', payload: response.data[0] });
-  } catch (err) {
-    console.warn('error with GET:', err);
-  }
-}
-
-// Create the rootSaga generator function -- register all sagas here
-function* rootSaga() {
-  //takeLatest?
-  yield takeLatest('GET_MOVIES', fetchMovies);
-  yield takeLatest('GET_DETAILS', fetchDetails);
-  yield takeLatest('GET_GENRES', getGenres);
-  yield takeLatest('PUT_MOVIE', putMovieDetails);
-}
+import rootReducer from './redux/reducers/_root.reducer';
+import rootSaga from './redux/sagas/_root.saga';
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -45,11 +23,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 // Create one store that all components can use
 const storeInstance = createStore(
-  combineReducers({
-    movies,
-    genres,
-    details,
-  }),
+  // replacing reducer registration with abstracted file
+  rootReducer,
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
 );

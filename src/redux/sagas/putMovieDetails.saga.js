@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { put } from 'redux-saga/effects';
+
 //function to edit movie details
 function* putMovieDetails(action) {
   try {
@@ -15,3 +18,5 @@ function* putMovieDetails(action) {
     console.warn(err);
   }
 }
+
+export default putMovieDetails;
