@@ -15,6 +15,8 @@ const customStyles = (theme) =>
       flexGrow: 1,
       textAlign: 'left',
       margin: `0 0 30px`,
+      position: 'static',
+      background: '#0a0a0a',
     },
     title: { flexGrow: 2 },
     primaryHeading: {
@@ -37,7 +39,7 @@ class Header extends Component {
     }
     return (
       <div className={classes.root}>
-        <AppBar style={{ background: '#0a0a0a' }}>
+        <AppBar style={{ background: '#0a0a0a' }} className={classes.root}>
           <Toolbar>
             <Typography
               variant='h4'

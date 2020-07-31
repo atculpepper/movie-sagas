@@ -58,7 +58,7 @@ class EditPage extends Component {
   render() {
     return (
       <div className='algnLeft'>
-        {/* <Header /> */}
+        <Header title={'Edit'} />
 
         <h1>Edit</h1>
         <div>

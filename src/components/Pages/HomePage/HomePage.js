@@ -12,7 +12,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <h2>Home</h2>
+        <Header title={'Movie Database'} />
         <Link to='/admin'>Admin Page</Link>
         <MoviesList />
       </div>
