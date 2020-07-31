@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import MoviesListItem from '../MoviesListItem/MoviesListItem';
 
+import Header from '../Header/Header';
+
 class MoviesList extends Component {
   state = {
     searchTerm: '',
@@ -42,6 +44,7 @@ class MoviesList extends Component {
 
     return (
       <div className='algnLeft'>
+        <Header title={'Movie Database'} />
         <input placeholder='Search' type='text' onChange={this.changeSearch} />
         {limitedResults.map((item, index) => (
           <MoviesListItem key={index} item={item} />
