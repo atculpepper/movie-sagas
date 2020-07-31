@@ -1,12 +1,17 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const pool = require("../modules/pool");
+const pool = require('../modules/pool');
 
 // // ------MOVIES ROUTES ----------//
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   // get all movie data
-  const queryText = `SELECT * FROM "movies" ORDER BY "title" ASC;`;
+  const queryText = `SELECT "movies".id, "movies".title, "movies".poster, "movies".description, array_agg("genres".name) as "genre"
+  FROM "movies"
+  LEFT JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id
+  LEFT JOIN "genres" ON "movies_genres".genres_id = "genres".id
+  GROUP BY "movies".id
+  ORDER BY "title" ASC;`;
 
   pool
     .query(queryText)
@@ -19,7 +24,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/details/:id", (req, res) => {
+router.get('/details/:id', (req, res) => {
   // get a single movies' data
   const queryString = `SELECT * FROM "movies" WHERE "id" = $1;`;
   const movieId = req.params.id;
@@ -35,7 +40,7 @@ router.get("/details/:id", (req, res) => {
     });
 });
 
-router.put("/edit/:id", (req, res) => {
+router.put('/edit/:id', (req, res) => {
   // update data for a single movie
   const queryText = `UPDATE "movies"
     SET "title" = $1, "description" = $2
@@ -60,7 +65,7 @@ router.put("/edit/:id", (req, res) => {
     });
 });
 
-router.get("/genres/:id", (req, res) => {
+router.get('/genres/:id', (req, res) => {
   // get a single movies' data
   const queryString = `SELECT "movies_genres".id, "movies_genres".movies_id, "movies_genres".genres_id, "movies".title, "genres".name FROM "movies"
     JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id
@@ -79,7 +84,7 @@ router.get("/genres/:id", (req, res) => {
     });
 });
 
-router.delete("/genres/:junctionId", (req, res) => {
+router.delete('/genres/:junctionId', (req, res) => {
   const moviesGenresId = req.params.junctionId;
   const queryString = `DELETE FROM "movies_genres" WHERE "id" = $1;`;
 
@@ -94,7 +99,7 @@ router.delete("/genres/:junctionId", (req, res) => {
     });
 });
 
-router.post("/genres", (req, res) => {
+router.post('/genres', (req, res) => {
   const moviesGenresData = req.body;
   const queryString = `INSERT INTO "movies_genres" ("movies_id", "genres_id")
     VALUES ($1, $2);`;
