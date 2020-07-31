@@ -3,24 +3,24 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // dependencies for custom material-ui styling
-import { withStyles, createStyles } from '@material-ui/core/styles';
+// import { withStyles, createStyles } from '@material-ui/core/styles';
 // material-ui components
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-} from '@material-ui/core';
+// import {
+//   Card,
+//   CardActionArea,
+//   CardContent,
+//   CardMedia,
+//   Typography,
+// } from '@material-ui/core';
 
-// create custom material styling
-const customStyles = (theme) =>
-  createStyles({
-    imgMedia: {
-      height: '335px',
-      backgroundSizing: 'cover',
-    },
-  });
+// // create custom material styling
+// const customStyles = (theme) =>
+//   createStyles({
+//     imgMedia: {
+//       height: '335px',
+//       backgroundSizing: 'cover',
+//     },
+//   });
 
 class MoviesListItem extends Component {
   componentDidMount() {
@@ -35,31 +35,45 @@ class MoviesListItem extends Component {
   };
 
   render() {
-    const { item, classes } = this.props;
+    const { item } = this.props;
+    console.log(item);
 
     return (
-      <Card>
-        <CardActionArea
-          onClick={(event) => this.clickMovieDetails(event, item.id)}
-        >
-          <CardMedia
-            className={classes.imgMedia}
-            image={item.poster}
-            title={item.title}
-          />
-          <CardContent>
-            <Typography component='h3' variant='h6'>
-              {item.title}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <div
+        className='movieListItem'
+        onClick={(event) => this.clickMovieDetails(event, item.id)}
+      >
+        <img src={item.poster} alt={item.title} />
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+        <ul>
+          {item.genre
+            .filter((genreItemFilter) => genreItemFilter !== null)
+            .map((genreItem, genreIndex) => (
+              <li key={genreIndex}>{genreItem}</li>
+            ))}
+        </ul>
+      </div>
+      // <Card>
+      //   <CardActionArea
+      //     onClick={(event) => this.clickMovieDetails(event, item.id)}
+      //   >
+      //     <CardMedia
+      //       className={classes.imgMedia}
+      //       image={item.poster}
+      //       title={item.title}
+      //     />
+      //     <CardContent>
+      //       <Typography component='h3' variant='h6'>
+      //         {item.title}
+      //       </Typography>
+      //     </CardContent>
+      //   </CardActionArea>
+      // </Card>
     );
   }
 }
 
 const mapStoreToProps = (store) => ({ store });
 
-export default withStyles(customStyles)(
-  withRouter(connect(mapStoreToProps)(MoviesListItem))
-);
+export default withRouter(connect(mapStoreToProps)(MoviesListItem));
