@@ -1,71 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../Header/Header.js';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-
-//material ui imports
-import { Button, Container, Grid, Typography, Box } from '@material-ui/core';
-
-const customStyles = (theme) =>
-  createStyles({
-    poster: {
-      width: '100%',
-    },
-  });
+import Header from '../../Header/Header';
 
 class DetailsPage extends Component {
   componentDidMount() {
-    // clickList = () => {
+    // dispatch to saga to call server API
     this.props.dispatch({
-      type: 'GET_GENRES',
+      type: 'GET_MOVIE',
       payload: this.props.match.params.id,
     });
     this.props.dispatch({
-      type: 'GET_DETAILS',
+      type: 'GET_MOVIE_GENRES',
       payload: this.props.match.params.id,
     });
-    // this.props.history.push("/movies");
   }
-
-  clickEditMovie = (event) => {
-    this.props.history.push(`/edit/${this.props.match.params.id}`);
-  };
 
   clickBackToList = (event) => {
     this.props.history.push('/');
   };
 
+  clickEditMovie = (event) => {
+    this.props.history.push(`/edit/${this.props.match.params.id}`);
+  };
+
   render() {
-    const { classes } = this.props;
-    //I want to include genre information here, but I will need to join the genres that were returned in an array within an array
     return (
-      <div className='detailsBody'>
-        <Header title='Details' backHandler={this.clickBackToList}>
-          <Button
-            onClick={this.clickEditMovie}
-            variant='outlined'
-            color='inherit'
-            size='large'
-          >
-            Edit Movie
-          </Button>
-        </Header>
+      <div className='algnLeft'>
+        <Header title={'Details'} />
+        <h2>Details</h2>
 
         <div>
-          {/* <button className='btn' onClick={this.clickBackToList}>
-            Back to List
-          </button>
-          <button className='btn' onClick={this.clickEditMovie}>
-            Edit Movie
-          </button> */}
+          <button onClick={this.clickBackToList}>Back to List</button>
+          <button onClick={this.clickEditMovie}>Edit</button>
         </div>
-        <div>
-          <p>Details</p>
-          <h3>Title: {this.props.store.details.title}</h3>
-          <p>Description: {this.props.store.details.description}</p>
-        </div>
+
+        <h3>{this.props.store.details.title}</h3>
+        <p>{this.props.store.details.description}</p>
+
         <ul>
-          {this.props.store.genres.map((item, index) => (
+          {this.props.store.movieGenres.map((item, index) => (
             <li key={index}>{item.name}</li>
           ))}
         </ul>
@@ -74,8 +47,6 @@ class DetailsPage extends Component {
   }
 }
 
-const mapStoreToProps = (store) => ({
-  store,
-});
+const mapStoreToProps = (store) => ({ store });
 
-export default withStyles(customStyles)(connect(mapStoreToProps)(DetailsPage));
+export default connect(mapStoreToProps)(DetailsPage);

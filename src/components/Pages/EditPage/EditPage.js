@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import MovieGenresEditor from '../../MovieGenresEditor/MovieGenresEditor';
 import Header from '../../Header/Header';
 
 class EditPage extends Component {
@@ -15,7 +17,7 @@ class EditPage extends Component {
       payload: this.props.match.params.id,
     });
     this.props.dispatch({
-      type: 'GET_GENRES',
+      type: 'GET_MOVIE_GENRES',
       payload: this.props.match.params.id,
     });
   }
@@ -56,41 +58,30 @@ class EditPage extends Component {
   render() {
     return (
       <div className='algnLeft'>
-        <Header />
-        <h2>Edit Title and Description</h2>
-        <div>
-          <button className='btn' onClick={this.clickCancel}>
-            Cancel
-          </button>
-          <button className='btn' onClick={this.clickSaveMovieDetails}>
-            Save
-          </button>
-        </div>
+        {/* <Header /> */}
 
+        <h1>Edit</h1>
+        <div>
+          <button onClick={this.clickCancel}>Cancel</button>
+          <button onClick={this.clickSaveMovieDetails}>Save</button>
+        </div>
         <div>
           <div>
             <input
-              className='textField'
               type='text'
               placeholder='New Title'
               onChange={this.changeMovieDetails('title')}
+              defaultValue={this.props.store.details.title}
             />
           </div>
           <div>
             <textarea
-              className='textField'
-              placeholder='New Description'
               onChange={this.changeMovieDetails('description')}
+              defaultValue={this.props.store.details.description}
             ></textarea>
           </div>
         </div>
-
-        <h2>Genres</h2>
-        <ul>
-          {this.props.store.genres.map((item, index) => (
-            <li key={index}>{item.name}</li>
-          ))}
-        </ul>
+        <MovieGenresEditor movieId={this.props.match.params.id} />
       </div>
     );
   }
