@@ -5,6 +5,7 @@ import AddGenre from '../../AddGenre/AddGenre';
 import GenresList from '../../GenresList/GenresList';
 import LoginForm from '../../LoginForm/LoginForm';
 import LogoutButton from '../../LogoutButton/LogoutButton';
+import Header from '../../Header/Header';
 
 class AdminPage extends Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class AdminPage extends Component {
   render() {
     let secureContent = (
       <div>
+        {/* <Header /> */}
         <div>
           <LogoutButton />
         </div>
@@ -31,6 +33,7 @@ class AdminPage extends Component {
 
     return (
       <div>
+        <Header title={'Admin'} />
         <h2>Admin</h2>
         <Link to='/'>Home Page</Link>
 
