@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const moviesRouter = require('./routes/movies.router');
 const genresRouter = require('./routes/genres.router');
-const authRouter = require('./routers/auth.router');
+const authRouter = require('./routes/auth.router');
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for angular requests
