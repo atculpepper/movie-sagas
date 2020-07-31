@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import MovieGenresEditor from '../../MovieGenresEditor/MovieGenresEditor';
+import Header from '../../Header/Header';
 
 class EditPage extends Component {
   state = {
@@ -57,12 +58,13 @@ class EditPage extends Component {
   render() {
     return (
       <div className='algnLeft'>
-        <h2>Edit</h2>
+        {/* <Header /> */}
+
+        <h1>Edit</h1>
         <div>
           <button onClick={this.clickCancel}>Cancel</button>
           <button onClick={this.clickSaveMovieDetails}>Save</button>
         </div>
-
         <div>
           <div>
             <input
@@ -79,7 +81,6 @@ class EditPage extends Component {
             ></textarea>
           </div>
         </div>
-
         <MovieGenresEditor movieId={this.props.match.params.id} />
       </div>
     );

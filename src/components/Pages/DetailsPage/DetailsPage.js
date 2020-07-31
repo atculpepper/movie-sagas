@@ -26,7 +26,7 @@ class DetailsPage extends Component {
   render() {
     return (
       <div className='algnLeft'>
-        <Header />
+        <Header title={'Details'} />
         <h2>Details</h2>
 
         <div>
