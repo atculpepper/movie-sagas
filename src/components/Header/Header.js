@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+//custom styling imports
 import { withStyles, createStyles } from '@material-ui/core';
 
 //material-ui components
@@ -49,6 +51,7 @@ class Header extends Component {
             >
               {this.props.title}
             </Typography>
+            <div>{this.props.children}</div>
           </Toolbar>
         </AppBar>
       </div>
