@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 class MovieSearch extends Component {
   changeSearch = (event) => {
@@ -15,4 +15,4 @@ class MovieSearch extends Component {
   }
 }
 
-export default Connect()(MovieSearch);
+export default connect()(MovieSearch);

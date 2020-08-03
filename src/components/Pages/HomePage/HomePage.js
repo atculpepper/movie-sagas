@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import MovieSearch from '../../MovieSearch/MovieSearch';
 
 //components
 import Header from '../../Header/Header.js';
 
-//MoviesList component is not yet brought in -- running into an "invalid hook call warning" error when trying to bring it in
 import MoviesList from '../../MoviesList/MoviesList';
 
 class HomePage extends Component {
   render() {
     return (
       <div>
-        <Header title={'Movie Database'} />
+        <Header title={'Movie Database'}>
+          <MovieSearch />
+        </Header>
         <Link to='/admin'>Admin Page</Link>
         <MoviesList />
       </div>
