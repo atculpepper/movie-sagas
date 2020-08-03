@@ -44,7 +44,7 @@ class MoviesList extends Component {
 
     return (
       <div className='algnLeft'>
-        <input placeholder='Search' type='text' onChange={this.changeSearch} />
+        {/* <input placeholder='Search' type='text' onChange={this.changeSearch} /> */}
         {limitedResults.map((item, index) => (
           <MoviesListItem key={index} item={item} />
         ))}

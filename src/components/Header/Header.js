@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 //custom styling imports
 import { withStyles, createStyles } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
 
 //material-ui components
 
@@ -18,12 +19,15 @@ const customStyles = (theme) =>
       textAlign: 'left',
       margin: `0 0 30px`,
       position: 'static',
-      background: '#0a0a0a',
+      background: 'black',
     },
     title: { flexGrow: 2 },
     primaryHeading: {
       display: 'inline-block',
       marginRight: '0.8rem',
+    },
+    backButton: {
+      fill: 'white',
     },
   });
 
@@ -34,15 +38,25 @@ class Header extends Component {
 
     if (this.props.backHandler != null) {
       backArrowContent = (
-        <IconButton onClick={this.props.backHandler}>
+        <IconButton
+          className={classes.backButton}
+          onClick={this.props.backHandler}
+        >
           <ArrowBackIos fontSize='large' />
         </IconButton>
       );
     }
     return (
       <div className={classes.root}>
-        <AppBar style={{ background: '#0a0a0a' }} className={classes.root}>
+        <AppBar className={classes.root}>
           <Toolbar>
+            {/* <IconButton></IconButton> */}
+            {/* <IconButton
+              className={classes.backButton}
+              onClick={this.props.backHandler}
+            >
+              <ArrowBackIos fontSize='large' />
+            </IconButton> */}
             <Typography
               variant='h4'
               component='h1'
