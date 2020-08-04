@@ -6,9 +6,9 @@ import MoviesListItem from '../MoviesListItem/MoviesListItem';
 import Header from '../Header/Header';
 
 class MoviesList extends Component {
-  state = {
-    searchTerm: '',
-  };
+  // state = {
+  //   searchTerm: '',
+  // };
 
   componentDidMount() {
     // load up all information from the server
@@ -21,18 +21,18 @@ class MoviesList extends Component {
     this.props.history.push(`/details/${id}`);
   };
 
-  changeSearch = (event) => {
-    this.setState({
-      searchTerm: event.target.value,
-    });
-  };
+  // changeSearch = (event) => {
+  //   this.setState({
+  //     searchTerm: event.target.value,
+  //   });
+  // };
 
   render() {
     let limitedResults = this.props.store.movies.filter((item, index) => {
       const lowerTitle = item.title.toLowerCase();
 
-      if (this.state.searchTerm) {
-        return lowerTitle.indexOf(this.state.searchTerm.toLowerCase()) !== -1;
+      if (this.props.store.search) {
+        return lowerTitle.indexOf(this.props.store.search.toLowerCase()) !== -1;
       }
 
       return true;
@@ -44,7 +44,7 @@ class MoviesList extends Component {
 
     return (
       <div className='algnLeft'>
-        <input placeholder='Search' type='text' onChange={this.changeSearch} />
+        {/* <input placeholder='Search' type='text' onChange={this.changeSearch} /> */}
         {limitedResults.map((item, index) => (
           <MoviesListItem key={index} item={item} />
         ))}

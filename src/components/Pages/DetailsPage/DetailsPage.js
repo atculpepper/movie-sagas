@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../Header/Header';
+// import MovieSearch from '../../MovieSearch/MovieSearch';
+
+//material ui components
+import Button from '@material-ui/core/Button';
 
 class DetailsPage extends Component {
   componentDidMount() {
@@ -26,17 +30,19 @@ class DetailsPage extends Component {
   render() {
     return (
       <div className='algnLeft'>
-        <Header title={'Details'} />
-        <h2>Details</h2>
-
-        <div>
+        <Header
+          title={this.props.store.details.title}
+          backHandler={this.clickBackToList}
+        >
+          <Button onClick={this.clickEditMovie} variant='contained'>
+            Edit
+          </Button>
+        </Header>
+        <h2>{this.props.store.details.title}</h2>
+        {/* <div>
           <button onClick={this.clickBackToList}>Back to List</button>
-          <button onClick={this.clickEditMovie}>Edit</button>
-        </div>
-
-        <h3>{this.props.store.details.title}</h3>
+        </div> */}
         <p>{this.props.store.details.description}</p>
-
         <ul>
           {this.props.store.movieGenres.map((item, index) => (
             <li key={index}>{item.name}</li>
