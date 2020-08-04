@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//custom components
 import MovieGenresEditor from '../../MovieGenresEditor/MovieGenresEditor';
 import Header from '../../Header/Header';
+
+//material ui components
+import Button from '@material-ui/core/Button';
 
 class EditPage extends Component {
   state = {
@@ -59,12 +63,18 @@ class EditPage extends Component {
     return (
       <div className='algnLeft'>
         <Header title='Edit' backHandler={this.clickCancel}>
-          <button onClick={this.clickEditMovie}>Edit</button>
-          <button onClick={this.clickSaveMovieDetails}>Save</button>
+          <Button onClick={this.clickEditMovie} variant='contained'>
+            Edit
+          </Button>
+          <Button onClick={this.clickSaveMovieDetails} variant='contained'>
+            Save
+          </Button>
         </Header>
         <h1>Edit</h1>
         <div>
-          <button onClick={this.clickCancel}>Cancel</button>
+          <Button onClick={this.clickCancel} variant='contained'>
+            Cancel
+          </Button>
         </div>
         <div>
           <div>

@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import Header from '../../Header/Header';
 // import MovieSearch from '../../MovieSearch/MovieSearch';
 
+//material ui components
+import Button from '@material-ui/core/Button';
+
 class DetailsPage extends Component {
   componentDidMount() {
     // dispatch to saga to call server API
@@ -31,7 +34,9 @@ class DetailsPage extends Component {
           title={this.props.store.details.title}
           backHandler={this.clickBackToList}
         >
-          <button onClick={this.clickEditMovie}>Edit</button>
+          <Button onClick={this.clickEditMovie} variant='contained'>
+            Edit
+          </Button>
         </Header>
         <h2>{this.props.store.details.title}</h2>
         {/* <div>

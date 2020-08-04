@@ -39,7 +39,7 @@ class Header extends Component {
     if (this.props.backHandler != null) {
       backArrowContent = (
         <IconButton
-          className={classes.backButton}
+          // className={classes.backButton}
           onClick={this.props.backHandler}
         >
           <ArrowBackIos className={classes.backButton} fontSize='large' />
