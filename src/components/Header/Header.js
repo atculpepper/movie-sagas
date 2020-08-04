@@ -5,12 +5,12 @@ import { withStyles, createStyles } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 
 //material-ui components
-
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
+import Link from '@material-ui/core/Link';
 
 const customStyles = (theme) =>
   createStyles({
@@ -51,14 +51,20 @@ class Header extends Component {
         <AppBar className={classes.root}>
           <Toolbar>
             {backArrowContent}
-            <Typography
-              variant='h4'
-              component='h1'
-              className={classes.primaryHeading}
-              color='inherit'
-            >
-              {this.props.title}
-            </Typography>
+            <div className={classes.title}>
+              <Typography
+                variant='h4'
+                component='h1'
+                className={classes.primaryHeading}
+                color='inherit'
+              >
+                {this.props.title}
+              </Typography>
+              <Link underline='none' color='inherit' href='#/admin'>
+                Admin Page
+              </Link>
+            </div>
+
             <div>{this.props.children}</div>
           </Toolbar>
         </AppBar>
