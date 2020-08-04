@@ -27,13 +27,16 @@ class DetailsPage extends Component {
   render() {
     return (
       <div className='algnLeft'>
-        <Header title={this.props.store.details.title}>
+        <Header
+          title={this.props.store.details.title}
+          backHandler={this.clickBackToList}
+        >
           <button onClick={this.clickEditMovie}>Edit</button>
         </Header>
         <h2>{this.props.store.details.title}</h2>
-        <div>
+        {/* <div>
           <button onClick={this.clickBackToList}>Back to List</button>
-        </div>
+        </div> */}
         <p>{this.props.store.details.description}</p>
         <ul>
           {this.props.store.movieGenres.map((item, index) => (

@@ -50,13 +50,6 @@ class Header extends Component {
       <div className={classes.root}>
         <AppBar className={classes.root}>
           <Toolbar>
-            {/* <IconButton></IconButton> */}
-            {/* <IconButton
-              className={classes.backButton}
-              onClick={this.props.backHandler}
-            >
-              <ArrowBackIos fontSize='large' />
-            </IconButton> */}
             {backArrowContent}
             <Typography
               variant='h4'
