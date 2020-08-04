@@ -12,7 +12,7 @@ class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
-      <div className='App'>
+      <div>
         <Router>
           <Route exact path='/' component={HomePage} />
           <Route path='/details/:id' component={DetailsPage} />
