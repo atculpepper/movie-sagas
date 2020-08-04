@@ -42,7 +42,7 @@ class Header extends Component {
           className={classes.backButton}
           onClick={this.props.backHandler}
         >
-          <ArrowBackIos fontSize='large' />
+          <ArrowBackIos className={classes.backButton} fontSize='large' />
         </IconButton>
       );
     }
