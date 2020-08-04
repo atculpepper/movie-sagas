@@ -15,7 +15,6 @@ class HomePage extends Component {
         <Header title={'Movie Database'}>
           <MovieSearch />
         </Header>
-        <Link to='/admin'>Admin Page</Link>
         <MoviesList />
       </div>
     );

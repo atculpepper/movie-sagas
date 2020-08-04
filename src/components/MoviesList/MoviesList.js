@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import MoviesListItem from '../MoviesListItem/MoviesListItem';
 
+//custom components
 import Header from '../Header/Header';
+
+//material ui components
+import Container from '@material-ui/core/Container';
 
 class MoviesList extends Component {
   // state = {
@@ -43,12 +47,11 @@ class MoviesList extends Component {
     });
 
     return (
-      <div className='algnLeft'>
-        {/* <input placeholder='Search' type='text' onChange={this.changeSearch} /> */}
+      <Container maxWidth='false'>
         {limitedResults.map((item, index) => (
           <MoviesListItem key={index} item={item} />
         ))}
-      </div>
+      </Container>
     );
   }
 }
