@@ -57,6 +57,7 @@ class Header extends Component {
             >
               <ArrowBackIos fontSize='large' />
             </IconButton> */}
+            {backArrowContent}
             <Typography
               variant='h4'
               component='h1'
