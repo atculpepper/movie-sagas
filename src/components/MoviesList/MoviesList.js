@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 
 //material ui components
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 class MoviesList extends Component {
   // state = {
@@ -48,9 +49,13 @@ class MoviesList extends Component {
 
     return (
       <Container maxWidth='false'>
-        {limitedResults.map((item, index) => (
-          <MoviesListItem key={index} item={item} />
-        ))}
+        <Grid container spacing={3}>
+          {limitedResults.map((item, index) => (
+            <Grid item xs={12} sm={4} md={3} lg={2}>
+              <MoviesListItem key={index} item={item} />
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     );
   }
