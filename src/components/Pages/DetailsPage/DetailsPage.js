@@ -5,6 +5,8 @@ import Header from '../../Header/Header';
 
 //material ui components
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 class DetailsPage extends Component {
   componentDidMount() {
@@ -38,16 +40,18 @@ class DetailsPage extends Component {
             Edit
           </Button>
         </Header>
-        <h2>{this.props.store.details.title}</h2>
-        {/* <div>
+        <Container>
+          <h2>{this.props.store.details.title}</h2>
+          {/* <div>
           <button onClick={this.clickBackToList}>Back to List</button>
         </div> */}
-        <p>{this.props.store.details.description}</p>
-        <ul>
-          {this.props.store.movieGenres.map((item, index) => (
-            <li key={index}>{item.name}</li>
-          ))}
-        </ul>
+          <p>{this.props.store.details.description}</p>
+          <ul>
+            {this.props.store.movieGenres.map((item, index) => (
+              <li key={index}>{item.name}</li>
+            ))}
+          </ul>
+        </Container>
       </div>
     );
   }

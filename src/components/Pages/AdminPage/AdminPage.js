@@ -7,6 +7,10 @@ import LoginForm from '../../LoginForm/LoginForm';
 import LogoutButton from '../../LogoutButton/LogoutButton';
 import Header from '../../Header/Header';
 
+//material ui components
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+
 class AdminPage extends Component {
   componentDidMount() {
     this.props.dispatch({
@@ -34,10 +38,14 @@ class AdminPage extends Component {
     return (
       <div>
         <Header title={'Admin'} />
-        <h2>Admin</h2>
-        <Link to='/'>Home Page</Link>
+        <Container>
+          <div>
+            <h2>Admin</h2>
+            <Link to='/'>Home Page</Link>
 
-        {secureContent}
+            {secureContent}
+          </div>
+        </Container>
       </div>
     );
   }

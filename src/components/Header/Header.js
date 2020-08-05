@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 //custom styling imports
 import { withStyles, createStyles } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
+import { logo } from './alice.jpg';
 
 //material-ui components
 import AppBar from '@material-ui/core/AppBar';
@@ -29,6 +29,10 @@ const customStyles = (theme) =>
     backButton: {
       fill: 'white',
     },
+    logo: {
+      width: '2em',
+      height: '2em',
+    },
   });
 
 class Header extends Component {
@@ -48,9 +52,19 @@ class Header extends Component {
     }
     return (
       <div className={classes.root}>
-        <AppBar className={classes.root}>
+        <AppBar
+          className={classes.root}
+          // title={logo}
+          // iconElementLeft={<img src={logo} alt='logo' />}
+        >
           <Toolbar>
             {backArrowContent}
+            {/* <img
+              alt='glow rainbow logo'
+              src={logo}
+              className={classes.logo}
+            ></img> */}
+
             <div className={classes.title}>
               <Typography
                 variant='h4'

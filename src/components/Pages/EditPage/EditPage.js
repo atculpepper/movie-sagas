@@ -7,6 +7,8 @@ import Header from '../../Header/Header';
 
 //material ui components
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 class EditPage extends Component {
   state = {
@@ -70,29 +72,31 @@ class EditPage extends Component {
             Save
           </Button>
         </Header>
-        <h1>Edit</h1>
-        <div>
-          <Button onClick={this.clickCancel} variant='contained'>
-            Cancel
-          </Button>
-        </div>
-        <div>
+        <Container>
+          <h1>Edit</h1>
           <div>
-            <input
-              type='text'
-              placeholder='New Title'
-              onChange={this.changeMovieDetails('title')}
-              defaultValue={this.props.store.details.title}
-            />
+            <Button onClick={this.clickCancel} variant='contained'>
+              Cancel
+            </Button>
           </div>
           <div>
-            <textarea
-              onChange={this.changeMovieDetails('description')}
-              defaultValue={this.props.store.details.description}
-            ></textarea>
+            <div>
+              <input
+                type='text'
+                placeholder='New Title'
+                onChange={this.changeMovieDetails('title')}
+                defaultValue={this.props.store.details.title}
+              />
+            </div>
+            <div>
+              <textarea
+                onChange={this.changeMovieDetails('description')}
+                defaultValue={this.props.store.details.description}
+              ></textarea>
+            </div>
           </div>
-        </div>
-        <MovieGenresEditor movieId={this.props.match.params.id} />
+          <MovieGenresEditor movieId={this.props.match.params.id} />
+        </Container>
       </div>
     );
   }
