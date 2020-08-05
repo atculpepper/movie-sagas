@@ -52,15 +52,17 @@ class MoviesListItem extends Component {
             className={classes.media}
           />
           <CardContent>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
+            <Typography component='h3' variant='h4'>
+              {item.title}
+            </Typography>
+            {/* <Typography component='h4'>{item.description}</Typography>
             <ul>
               {item.genre
                 .filter((genreItemFilter) => genreItemFilter !== null)
                 .map((genreItem, genreIndex) => (
                   <li key={genreIndex}>{genreItem}</li>
                 ))}
-            </ul>
+            </ul> */}
           </CardContent>
         </CardActionArea>
       </Card>
