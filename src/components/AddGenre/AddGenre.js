@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//material ui components
+import Button from '@material-ui/core/Button';
+
 class AddGenre extends Component {
   state = {
     newGenre: '',
@@ -36,7 +39,7 @@ class AddGenre extends Component {
           value={this.state.newGenre}
           onChange={this.changeNewGenre}
         />
-        <button onClick={this.saveNewGenre}>Save</button>
+        <Button onClick={this.saveNewGenre}>Save</Button>
       </div>
     );
   }

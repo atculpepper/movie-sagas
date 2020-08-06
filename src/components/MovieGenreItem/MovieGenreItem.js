@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//material ui components
+import Chip from '@material-ui/core/Chip';
+// import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 class MovieGenreItem extends Component {
   clickDeleteGenre = (event) => {
     // dispatch to a saga for deleting genre from database
@@ -17,7 +23,10 @@ class MovieGenreItem extends Component {
     const { item } = this.props;
     return (
       <li>
-        {item.name} <button onClick={this.clickDeleteGenre}>Delete</button>
+        <Chip label={item.name}></Chip>
+        <IconButton onClick={this.clickDeleteGenre}>
+          <DeleteIcon fontSize='small' />
+        </IconButton>
       </li>
     );
   }

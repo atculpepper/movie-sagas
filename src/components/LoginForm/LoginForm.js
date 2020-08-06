@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//material ui components
+import Button from '@material-ui/core/Button';
+
 class LoginForm extends Component {
   state = {
     loginInfo: {
@@ -48,7 +51,9 @@ class LoginForm extends Component {
         />
 
         <div>
-          <button onClick={this.clickLogin}>Log In</button>
+          <Button variant='contained' onClick={this.clickLogin}>
+            Log In
+          </Button>
         </div>
       </div>
     );
