@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieGenreItem from '../MovieGenreItem/MovieGenreItem';
 
+//material ui components
+import Button from '@material-ui/core/Button';
+
 class MovieGenresEditor extends Component {
   state = {
     selectedGenreId: 0,
@@ -49,7 +52,7 @@ class MovieGenresEditor extends Component {
               </option>
             ))}
           </select>
-          <button onClick={this.clickAddGenre}>Add Genre</button>
+          <Button onClick={this.clickAddGenre}>Add Genre</Button>
         </div>
 
         <ul>
